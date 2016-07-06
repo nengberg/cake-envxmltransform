@@ -14,12 +14,13 @@ using Xunit;
 using Path = Cake.Core.IO.Path;
 
 namespace Cake.EnvXmlTransform.Tests {
-	public class EnvXmlTransformRunnerTests {
+	public class EnvXmlTransformRunnerTests : IDisposable {
 		private readonly EnvXmlTransformRunner sut;
 		private readonly List<Path> configFiles;
 		private readonly string environment;
 		private readonly string baseFilePath;
 		private readonly string configFolder;
+		private readonly string environmentFilePath;
 
 		public EnvXmlTransformRunnerTests() {
 			var globber = Substitute.For<IGlobber>();
@@ -31,8 +32,9 @@ namespace Cake.EnvXmlTransform.Tests {
 			var configPath = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\";
 			this.environment = "environment";
 			this.baseFilePath = $"{configPath}file.config";
+			this.environmentFilePath = $"{configPath}file.environment.config";
 			WriteTextToFile(BaseConfigurationFile, this.baseFilePath);
-			WriteTextToFile(EnvironmentSpecificConfigFile, $"{configPath}file.environment.config");
+			WriteTextToFile(EnvironmentSpecificConfigFile, this.environmentFilePath);
 			this.configFolder = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\**\*.config";
 		}
 
@@ -82,5 +84,10 @@ namespace Cake.EnvXmlTransform.Tests {
 						<add key=""anykeyreplaced"" value=""anyvaluereplaced""/>
 					</appSettings>
 				</configuration>";
+
+		public void Dispose() {
+			File.Delete(this.baseFilePath);
+			File.Delete(this.environmentFilePath);
+		}
 	}
 }
