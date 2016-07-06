@@ -21,22 +21,18 @@ namespace Cake.EnvXmlTransform {
 		}
 
 		/// <summary>
-		/// Apply config transformations on config files for a specific environment
+		/// Applies config transformations on config files for a specific environment
 		/// </summary>
-		/// <param name="configFilesPath">Path where your .config files are located. Patters are supported: "folder/**/*.config"</param>
+		/// <param name="configFilesPath">Path where your *.config files are located. Patters are supported: "folder/**/*.config"</param>
 		/// <param name="environment">What environmental configuration file to use for transformation, eg. stage for transforming files named *.stage.config into *.config</param>
 		public void ApplyTransformations(string configFilesPath, string environment) {
 			var configFiles = this.context.GetFiles(configFilesPath);
 			var environmentConfigs = configFiles.Where(MatchesGivenEnvironment(environment)).ToList();
 
 			if(environmentConfigs.Any()) {
-				var grouped = new Dictionary<string, string>();
-				foreach(var envConfig in environmentConfigs) {
-					var orginalName = envConfig.ToString().Replace($"{environment}.", "");
-					grouped[envConfig.ToString()] = orginalName;
-				}
+				var organizedConfigFiles = OrganizeConfigurationsByEnvironment(environment, environmentConfigs);
 
-				foreach(var config in grouped) {
+				foreach(var config in organizedConfigFiles) {
 					Console.WriteLine($"Transforming {config.Key} into {config.Value}");
 					XdtTransformation.TransformConfig(config.Value, config.Key, config.Value);
 				}
@@ -47,6 +43,16 @@ namespace Cake.EnvXmlTransform {
 
 		private static Func<FilePath, bool> MatchesGivenEnvironment(string environment) {
 			return c => c.ToString().Contains(environment);
+		}
+
+		private static Dictionary<string, string> OrganizeConfigurationsByEnvironment(string environment,
+			IEnumerable<FilePath> environmentConfigs) {
+			var grouped = new Dictionary<string, string>();
+			foreach(var envConfig in environmentConfigs) {
+				var orginalName = envConfig.ToString().Replace($"{environment}.", "");
+				grouped[envConfig.ToString()] = orginalName;
+			}
+			return grouped;
 		}
 	}
 }
