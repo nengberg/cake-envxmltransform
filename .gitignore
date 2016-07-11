@@ -9,10 +9,7 @@
 
 # Build related
 test-results/
-tools/Cake/
-tools/xunit.runners/
-tools/xunit.runner.console/
-tools/nuget.exe
+tools
 
 # mstest test results
 TestResults
@@ -25,8 +22,6 @@ TestResults
 *.user
 *.sln.docstates
 *.userprefs
-*.GhostDoc.xml
-*StyleCop.Cache
 
 # Build results
 [Dd]ebug/
@@ -43,21 +38,17 @@ x64/
 *.pgd
 *.rsp
 *.sbr
-*.tlb
-*.tli
-*.tlh
 *.tmp
 *.log
 *.vspscc
 *.vssscc
-.builds
 
 # Visual Studio profiler
 *.psess
 *.vsp
 *.vspx
 
-# ReSharper is a .NET coding add-in
+# ReSharper
 _ReSharper*
 
 # NCrunch
