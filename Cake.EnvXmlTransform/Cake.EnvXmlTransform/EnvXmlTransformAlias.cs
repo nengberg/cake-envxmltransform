@@ -10,24 +10,24 @@ namespace Cake.EnvXmlTransform {
 	/// /// <example>
 	/// <code>
 	///<![CDATA[
-	/// Task("Apply-Config-Transformations")
-	///   .Does(() => {
-	///     var configFileFolder = "folder/**/*.config";
-	///     var environment = "stage";
-	///     ConfigTransform.ApplyTransformations(configFileFolder, environment);
+	///	Task("Apply-Config-Transformations")
+	///		.Does(() => {
+	///			var configFileFolder = "folder/**/*.config";
+	///			var environment = "stage";
+	///			ConfigTransform.ApplyTransformations(configFileFolder, environment);
 	/// });
 	///]]>
 	/// </code>
 	/// </example>
 
-	[CakeAliasCategory("EnvXML")]
+	[CakeAliasCategory("Environmental XML configuration transformations")]
 	public static class EnvXmlTransformAlias {
 		[CakePropertyAlias]
-		public static EnvXmlTransformRunner ConfigTransform(this ICakeContext context) {
+		public static EnvironmentalXmlTransformRunner ConfigTransform(this ICakeContext context) {
 			if(context == null) {
 				throw new ArgumentNullException(nameof(context));
 			}
-			return new EnvXmlTransformRunner(context);
+			return new EnvironmentalXmlTransformRunner(context);
 		}
 	}
 }

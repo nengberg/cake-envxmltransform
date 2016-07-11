@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnvXmlTransformAlias.cs" />
-    <Compile Include="EnvXmlTransformRunner.cs" />
+    <Compile Include="EnvironmentalXmlTransformRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

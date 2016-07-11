@@ -15,7 +15,7 @@ using Path = Cake.Core.IO.Path;
 
 namespace Cake.EnvXmlTransform.Tests {
 	public class EnvXmlTransformRunnerTests : IDisposable {
-		private readonly EnvXmlTransformRunner sut;
+		private readonly EnvironmentalXmlTransformRunner sut;
 		private readonly List<Path> configFiles;
 		private readonly string environment;
 		private readonly string baseFilePath;
@@ -28,7 +28,7 @@ namespace Cake.EnvXmlTransform.Tests {
 			globber.Match(Arg.Any<string>()).Returns(this.configFiles);
 			var cakeContext = Substitute.For<ICakeContext>();
 			cakeContext.Globber.Returns(globber);
-			this.sut = new EnvXmlTransformRunner(cakeContext);
+			this.sut = new EnvironmentalXmlTransformRunner(cakeContext);
 			var configPath = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\";
 			this.environment = "environment";
 			this.baseFilePath = $"{configPath}file.config";
@@ -36,6 +36,20 @@ namespace Cake.EnvXmlTransform.Tests {
 			WriteTextToFile(BaseConfigurationFile, this.baseFilePath);
 			WriteTextToFile(EnvironmentSpecificConfigFile, this.environmentFilePath);
 			this.configFolder = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\**\*.config";
+		}
+
+		[Theory, InlineData(""), InlineData(null)]
+		public void ApplyTransformations_ConfigFilesPathNullOrEmpty_ThrowsArgumentException(string givenConfigFilesPath) {
+			var exception = Record.Exception(() => this.sut.ApplyTransformations(givenConfigFilesPath, this.environment));
+
+			exception.ShouldBeOfType<ArgumentException>();
+		}
+
+		[Theory, InlineData(""), InlineData(null)]
+		public void ApplyTransformations_EnvironmentNullOrEmpty_ThrowsArgumentException(string givenEnvironment) {
+			var exception = Record.Exception(() => this.sut.ApplyTransformations(this.configFolder, givenEnvironment));
+
+			exception.ShouldBeOfType<ArgumentException>();
 		}
 
 		[Fact]
@@ -47,9 +61,9 @@ namespace Cake.EnvXmlTransform.Tests {
 			result.ShouldBe(ExpectedConfigurationFile);
 		}
 
-		[Fact]
-		public void ApplyTransformations_EnvironmentalFilePresentThatMatchesInputButNotByCases_NoFileShouldBeTransformed() {
-			this.sut.ApplyTransformations(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\..\..\**\*.config", "Environment");
+		[Theory, InlineData("Environment"), InlineData("anyenvironment")]
+		public void ApplyTransformations_EnvironmentalFilePresentEnvironmentThatDoesNotMatchPresentOne_NoFileShouldBeTransformed(string givenEnvironment) {
+			this.sut.ApplyTransformations(this.configFolder, givenEnvironment);
 
 			File.Exists(this.baseFilePath).ShouldBeTrue();
 			var result = File.ReadAllText(this.baseFilePath);
