@@ -8,7 +8,7 @@
 *.sln.ide/
 
 # Build related
-build-results/
+test-results/
 tools/Cake/
 tools/xunit.runners/
 tools/xunit.runner.console/
