@@ -10,6 +10,7 @@
 # Build related
 test-results/
 tools
+artifacts
 
 # mstest test results
 TestResults
@@ -42,6 +43,7 @@ x64/
 *.log
 *.vspscc
 *.vssscc
+VersionAssemblyInfo.cs
 
 # Visual Studio profiler
 *.psess

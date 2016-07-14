@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cake.EnvXmltransform</id>
+    <title>Cake.EnvXmltransform</title>
+    <authors>Niklas Engberg</authors>
+    <owners>Niklas Engberg</owners>
+    <licenseUrl>https://github.com/nengberg/cake-envxmltransform/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nengberg/cake-envxmltransform</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A plugin for Cake for environment-based configuration transformations</description>
+    <tags>Cake Script Build Xdt Xml</tags>
+  </metadata>
+  <files>
+    <file src="..\..\artifacts\build\Cake.EnvXmltransform.dll" target="lib\net45" />
+  </files>
+</package>
