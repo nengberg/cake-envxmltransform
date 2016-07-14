@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Cake.EnvXmltransform</id>
-    <title>Cake.EnvXmltransform</title>
+    <id>Cake.EnvXmlTransform</id>
+    <title>Cake.EnvXmlTransform</title>
     <authors>Niklas Engberg</authors>
     <owners>Niklas Engberg</owners>
     <licenseUrl>https://github.com/nengberg/cake-envxmltransform/LICENSE</licenseUrl>
@@ -13,6 +13,6 @@
     <tags>Cake Script Build Xdt Xml</tags>
   </metadata>
   <files>
-    <file src="..\..\artifacts\build\Cake.EnvXmltransform.dll" target="lib\net45" />
+    <file src="..\..\artifacts\build\Cake.EnvXmlTransform.dll" target="lib\net45" />
   </files>
 </package>
