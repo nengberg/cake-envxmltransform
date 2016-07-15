@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.EnvXmlTransform", "Cak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.EnvXmlTransform.Tests", "Cake.EnvXmlTransform.Tests\Cake.EnvXmlTransform.Tests.csproj", "{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionInfo.cs = SolutionInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +29,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{159AFD1F-471A-4CE5-B8F0-134FACC7E199} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
+		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
 	EndGlobalSection
 EndGlobal

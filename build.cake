@@ -7,21 +7,22 @@ var configuration = Argument("configuration", "Debug");
 var artifacts = MakeAbsolute(Directory("./artifacts"));
 var testResultsDir = MakeAbsolute(Directory("./test-results"));
 var buildDirectory = MakeAbsolute(Directory(artifacts + "/build"));
-var solutionName = MakeAbsolute(File("Cake.EnvXmlTransform/Cake.EnvXmlTransform.sln"));
-var versionAssemblyInfo = MakeAbsolute(File("./VersionAssemblyInfo.cs"));
-var testAssemblies = new List<FilePath> { MakeAbsolute(File("./Cake.EnvXmlTransform/Cake.EnvXmlTransform.Tests/bin/" + configuration + "/Cake.EnvXmlTransform.Tests.dll")) };
+var solutionName = MakeAbsolute(File("./src/Cake.EnvXmlTransform.sln"));
+var testAssemblies = new List<FilePath> { MakeAbsolute(File("./src/Cake.EnvXmlTransform/Cake.EnvXmlTransform.Tests/bin/" + configuration + "/Cake.EnvXmlTransform.Tests.dll")) };
+
 SolutionProject project = null;
-GitVersion versionInfo = null;
+
+var semVersion = GitVersion().SemVer;
 
 Setup(ctx => {
     CreateDirectory(artifacts);
     var solution = ParseSolution(solutionName);
     project = solution.Projects.FirstOrDefault(x => x.Name == "Cake.EnvXmlTransform");
+    Information("Building version {0}", semVersion, project.Name);
 });
 
 Task("Build")
-    .IsDependentOn("Restore-Nuget-Packages")
-    .IsDependentOn("Update-Version-Info")
+    .IsDependentOn("Patch-Assembly-Info")
     .IsDependentOn("Update-AppVeyor-Build-Number")
     .Does(() => {
         Information("Building {0}", solutionName);
@@ -53,8 +54,8 @@ Task("Restore-Nuget-Packages")
 Task("Clean")
     .Does(() => {
         Information("Cleaning old files");
-        var binDirs = GetDirectories("Cake.EnvXmlTransform/Cake.EnvXmlTransform/**/bin");
-        var objDirs = GetDirectories("Cake.EnvXmlTransform/Cake.EnvXmlTransform/**/obj");
+        var binDirs = GetDirectories("./src/Cake.EnvXmlTransform/Cake.EnvXmlTransform/**/bin");
+        var objDirs = GetDirectories("./src/Cake.EnvXmlTransform/Cake.EnvXmlTransform/**/obj");
         CleanDirectory(artifacts);
         CleanDirectories(binDirs);
         CleanDirectories(objDirs);
@@ -68,37 +69,24 @@ Task("Copy-Files")
         CopyFiles(files, buildDirectory);
     });
 
-Task("Update-Version-Info")
-    .IsDependentOn("CreateVersionAssemblyInfo")
+Task("Patch-Assembly-Info")
+    .IsDependentOn("Restore-Nuget-Packages")
     .Does(() => {
-        versionInfo = GitVersion(new GitVersionSettings {
-            UpdateAssemblyInfo = true,
-            UpdateAssemblyInfoFilePath = versionAssemblyInfo
+        var file = "./src/SolutionInfo.cs";
+
+        CreateAssemblyInfo(file, new AssemblyInfoSettings
+        {
+            Product = "Cake.EnvXmlTransform",
+            Version = semVersion,
+            FileVersion = semVersion,
+            InformationalVersion = semVersion,
+            Copyright = "Copyright (c) Niklas Engberg 2016"
         });
-
-        if(versionInfo != null) {
-            Information("Version: {0}", versionInfo.FullSemVer);
-        } else {
-            throw new Exception("Unable to determine version");
-        }
     });
-
-Task("CreateVersionAssemblyInfo")
-    .WithCriteria(() => !FileExists(versionAssemblyInfo))
-    .Does(() =>
-{
-    Information("Creating version assembly info");
-    CreateAssemblyInfo(versionAssemblyInfo, new AssemblyInfoSettings {
-        Version = "0.0.0.1",
-        FileVersion = "0.0.0.1",
-        InformationalVersion = "",
-    });
-});
 
 Task("Package")
     .IsDependentOn("Clean")
-    .IsDependentOn("Restore-NuGet-Packages")
-    .IsDependentOn("Update-Version-Info")
+    .IsDependentOn("Patch-Assembly-Info")
     .IsDependentOn("Copy-Files")
     .Does(() => {
         CreateDirectory(Directory(artifacts + "/packages"));
@@ -108,17 +96,17 @@ Task("Package")
         NuGetPack(nuspec, new NuGetPackSettings {
             BasePath = buildDirectory,
             NoPackageAnalysis = false,
-            Version = versionInfo.NuGetVersionV2,
+            Version = semVersion,
             OutputDirectory = Directory(artifacts +"/packages"),
             Properties = new Dictionary<string, string>() { { "Configuration", configuration } }
         });
 });
 
 Task("Update-AppVeyor-Build-Number")
-    .IsDependentOn("Update-Version-Info")
+    .IsDependentOn("Patch-Assembly-Info")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .Does(() => {
-        AppVeyor.UpdateBuildVersion(versionInfo.FullSemVer +" | " +AppVeyor.Environment.Build.Number);
+        AppVeyor.UpdateBuildVersion(semVersion + " | " + AppVeyor.Environment.Build.Number);
 });
 
 RunTarget(target);
