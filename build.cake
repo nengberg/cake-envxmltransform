@@ -67,6 +67,8 @@ Task("Copy-Files")
         CreateDirectory(buildDirectory);
         var files = GetFiles(project.Path.GetDirectory() +"/bin/" + configuration + "/" + project.Name +".*");
         CopyFiles(files, buildDirectory);
+        CopyFileToDirectory("./src/lib/Cake.XdtTransform.dll", buildDirectory);
+        CopyFileToDirectory("./src/lib/Microsoft.Web.XmlTransform.dll", buildDirectory);
     });
 
 Task("Patch-Assembly-Info")
@@ -97,7 +99,7 @@ Task("Package")
             BasePath = buildDirectory,
             NoPackageAnalysis = false,
             Version = semVersion,
-            OutputDirectory = Directory(artifacts +"/packages"),
+            OutputDirectory = Directory(artifacts + "/packages"),
             Properties = new Dictionary<string, string>() { { "Configuration", configuration } }
         });
 });

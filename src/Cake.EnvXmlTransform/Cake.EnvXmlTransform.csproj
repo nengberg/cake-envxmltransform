@@ -40,12 +40,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Cake.XdtTransform, Version=0.9.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cake.XdtTransform.0.9.11\lib\net45\Cake.XdtTransform.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Cake.XdtTransform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cake.XdtTransform.0.9.11\lib\net45\Microsoft.Web.XmlTransform.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Web.XmlTransform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
