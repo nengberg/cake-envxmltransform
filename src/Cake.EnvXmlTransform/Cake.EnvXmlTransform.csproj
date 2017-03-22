@@ -39,7 +39,7 @@
       <HintPath>..\packages\Cake.Core.0.18.0\lib\net45\Cake.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cake.XdtTransform, Version=0.9.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cake.XdtTransform, Version=0.9.14.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Cake.XdtTransform.dll</HintPath>
     </Reference>
