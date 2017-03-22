@@ -10,6 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A plugin for Cake for environment-based configuration transformations</description>
+	<releaseNotes>Updates Cake.Core and Cake.Common to version 0.18.0.</releaseNotes>
     <tags>Cake Script Build Xdt Xml Config Configuration Configtransform</tags>
   </metadata>
   <files>

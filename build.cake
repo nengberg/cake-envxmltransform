@@ -82,7 +82,7 @@ Task("Patch-Assembly-Info")
             Version = semVersion,
             FileVersion = semVersion,
             InformationalVersion = semVersion,
-            Copyright = "Copyright (c) Niklas Engberg 2016"
+            Copyright = "Copyright (c) Niklas Engberg 2017"
         });
     });
 
