@@ -7,10 +7,10 @@
     <owners>Niklas Engberg</owners>
     <licenseUrl>https://github.com/nengberg/cake-envxmltransform/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/nengberg/cake-envxmltransform</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A plugin for Cake for environment-based configuration transformations</description>
-	<releaseNotes>Updates underlying Cake.XdtTransform and downgraded Cake.Core and Cake.Common to version 0.17.0.</releaseNotes>
+    <releaseNotes>Updates using the new Cake Contrib icon for in nuspec file</releaseNotes>
     <tags>Cake Script Build Xdt Xml Config Configuration Configtransform</tags>
   </metadata>
   <files>
