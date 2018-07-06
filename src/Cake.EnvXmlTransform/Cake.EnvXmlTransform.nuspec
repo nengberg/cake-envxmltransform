@@ -7,15 +7,15 @@
     <owners>Niklas Engberg</owners>
     <licenseUrl>https://github.com/nengberg/cake-envxmltransform/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/nengberg/cake-envxmltransform</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A plugin for Cake for environment-based configuration transformations</description>
     <releaseNotes>Updates using the new Cake Contrib icon for in nuspec file</releaseNotes>
     <tags>Cake Script Build Xdt Xml Config Configuration Configtransform</tags>
   </metadata>
   <files>
-    <file src="..\..\artifacts\build\Cake.EnvXmlTransform.dll" target="lib\net45" />
-	<file src="..\..\artifacts\build\Cake.XdtTransform.dll" target="lib\net45" />
-	<file src="..\..\artifacts\build\Microsoft.Web.XmlTransform.dll" target="lib\net45" />
+    <file src="..\..\artifacts\build\Cake.EnvXmlTransform.dll" target="lib\netstandard2.0" />
+	<file src="..\..\artifacts\build\Cake.XdtTransform.dll" target="lib\netstandard2.0" />
+	<file src="..\..\artifacts\build\Microsoft.Web.XmlTransform.dll" target="lib\netstandard2.0" />
   </files>
 </package>

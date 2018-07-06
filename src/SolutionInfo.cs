@@ -6,8 +6,8 @@
 using System.Reflection;
 
 [assembly: AssemblyProduct("Cake.EnvXmlTransform")]
-[assembly: AssemblyVersion("0.3.2")]
-[assembly: AssemblyFileVersion("0.3.2")]
-[assembly: AssemblyInformationalVersion("0.3.2")]
-[assembly: AssemblyCopyright("Copyright (c) Niklas Engberg 2017")]
+[assembly: AssemblyVersion("0.4.0")]
+[assembly: AssemblyFileVersion("0.4.0")]
+[assembly: AssemblyInformationalVersion("0.4.0")]
+[assembly: AssemblyCopyright("Copyright (c) Niklas Engberg 2018")]
 

@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.EnvXmlTransform", "Cake.EnvXmlTransform\Cake.EnvXmlTransform.csproj", "{159AFD1F-471A-4CE5-B8F0-134FACC7E199}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.EnvXmlTransform.Tests", "Cake.EnvXmlTransform.Tests\Cake.EnvXmlTransform.Tests.csproj", "{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}"
-	ProjectSection(SolutionItems) = preProject
-		SolutionInfo.cs = SolutionInfo.cs
-	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.EnvXmlTransform", "Cake.EnvXmlTransform\Cake.EnvXmlTransform.csproj", "{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.EnvXmlTransform.Tests", "Cake.EnvXmlTransform.Tests\Cake.EnvXmlTransform.Tests.csproj", "{4A758CA8-5C34-4A09-8F69-48CB121C926A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,20 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{159AFD1F-471A-4CE5-B8F0-134FACC7E199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{159AFD1F-471A-4CE5-B8F0-134FACC7E199}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{159AFD1F-471A-4CE5-B8F0-134FACC7E199}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{159AFD1F-471A-4CE5-B8F0-134FACC7E199}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A758CA8-5C34-4A09-8F69-48CB121C926A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A758CA8-5C34-4A09-8F69-48CB121C926A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A758CA8-5C34-4A09-8F69-48CB121C926A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A758CA8-5C34-4A09-8F69-48CB121C926A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{159AFD1F-471A-4CE5-B8F0-134FACC7E199} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
-		{F94F59EC-FCA3-4639-9E79-7EFF11A6E848} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
+		{2EAA63F0-2E4F-45A1-BBA3-CB6BA5B85D1C} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
+		{4A758CA8-5C34-4A09-8F69-48CB121C926A} = {7B0635BC-1620-4D10-A2B8-CCDBE6A0380D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {966A62AD-086A-4C0A-96AD-6E3ADF59BCC4}
 	EndGlobalSection
 EndGlobal

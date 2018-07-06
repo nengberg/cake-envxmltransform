@@ -22,7 +22,6 @@ Setup(ctx => {
 });
 
 Task("Build")
-    .IsDependentOn("Patch-Assembly-Info")
     .IsDependentOn("Update-AppVeyor-Build-Number")
     .Does(() => {
         Information("Building {0}", solutionName);
@@ -65,30 +64,14 @@ Task("Copy-Files")
     .IsDependentOn("Build")
     .Does(() => {
         CreateDirectory(buildDirectory);
-        var files = GetFiles(project.Path.GetDirectory() +"/bin/" + configuration + "/" + project.Name +".*");
+        var files = GetFiles(project.Path.GetDirectory() +"/bin/" + configuration + "/netstandard2.0/" + project.Name +".*");
         CopyFiles(files, buildDirectory);
         CopyFileToDirectory("./src/lib/Cake.XdtTransform.dll", buildDirectory);
         CopyFileToDirectory("./src/lib/Microsoft.Web.XmlTransform.dll", buildDirectory);
     });
 
-Task("Patch-Assembly-Info")
-    .IsDependentOn("Restore-Nuget-Packages")
-    .Does(() => {
-        var file = "./src/SolutionInfo.cs";
-
-        CreateAssemblyInfo(file, new AssemblyInfoSettings
-        {
-            Product = "Cake.EnvXmlTransform",
-            Version = semVersion,
-            FileVersion = semVersion,
-            InformationalVersion = semVersion,
-            Copyright = "Copyright (c) Niklas Engberg 2017"
-        });
-    });
-
 Task("Package")
     .IsDependentOn("Clean")
-    .IsDependentOn("Patch-Assembly-Info")
     .IsDependentOn("Copy-Files")
     .Does(() => {
         CreateDirectory(Directory(artifacts + "/packages"));
@@ -100,12 +83,13 @@ Task("Package")
             NoPackageAnalysis = false,
             Version = semVersion,
             OutputDirectory = Directory(artifacts + "/packages"),
-            Properties = new Dictionary<string, string>() { { "Configuration", configuration } }
+            IconUrl = new Uri("https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png"),
+            Properties = new Dictionary<string, string>() { { "Configuration", configuration } },
+            ReleaseNotes = new List<string>() { "Updates using new Cake Contrib icon. Targeting netstandard2.0 and references Cake 0.28.x."
         });
 });
 
 Task("Update-AppVeyor-Build-Number")
-    .IsDependentOn("Patch-Assembly-Info")
     .WithCriteria(() => AppVeyor.IsRunningOnAppVeyor)
     .Does(() => {
         AppVeyor.UpdateBuildVersion(semVersion + " | " + AppVeyor.Environment.Build.Number);

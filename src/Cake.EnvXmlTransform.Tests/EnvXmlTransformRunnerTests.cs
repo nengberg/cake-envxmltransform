@@ -29,13 +29,13 @@ namespace Cake.EnvXmlTransform.Tests {
 			var cakeContext = Substitute.For<ICakeContext>();
 			cakeContext.Globber.Returns(globber);
 			this.sut = new EnvironmentalXmlTransformRunner(cakeContext);
-			var configPath = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\";
+			var configPath = $@"{AppContext.BaseDirectory}\..\..\";
 			this.environment = "environment";
 			this.baseFilePath = $"{configPath}file.config";
 			this.environmentFilePath = $"{configPath}file.environment.config";
 			WriteTextToFile(BaseConfigurationFile, this.baseFilePath);
 			WriteTextToFile(EnvironmentSpecificConfigFile, this.environmentFilePath);
-			this.configFolder = $@"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}\..\..\**\*.config";
+			this.configFolder = $@"{AppContext.BaseDirectory}\..\..\**\*.config";
 		}
 
 		[Theory, InlineData(""), InlineData(null)]
@@ -57,6 +57,7 @@ namespace Cake.EnvXmlTransform.Tests {
 			this.sut.ApplyTransformations(this.configFolder, this.environment);
 
 			File.Exists(this.baseFilePath).ShouldBeTrue();
+
 			var result = File.ReadAllText(this.baseFilePath);
 			result.ShouldBe(ExpectedConfigurationFile);
 		}
