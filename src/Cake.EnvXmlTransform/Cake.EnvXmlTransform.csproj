@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Common" Version="0.28.1" />
+    <PackageReference Include="Cake.Common" Version="0.33.0" />
     <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
     <PackageReference Include="Cake.XdtTransform" Version="0.13.0" />
   </ItemGroup>
