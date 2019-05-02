@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<package >
+<?xml version="1.0" encoding="utf-8"?>
+<package>
   <metadata>
     <id>Cake.EnvXmlTransform</id>
     <title>Cake.EnvXmlTransform</title>
@@ -7,7 +7,7 @@
     <owners>Niklas Engberg</owners>
     <licenseUrl>https://github.com/nengberg/cake-envxmltransform/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/nengberg/cake-envxmltransform</projectUrl>
-    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A plugin for Cake for environment-based configuration transformations</description>
     <releaseNotes>Updates using the new Cake Contrib icon for in nuspec file</releaseNotes>
