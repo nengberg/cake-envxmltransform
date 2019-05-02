@@ -12,7 +12,7 @@ var testAssemblies = new List<FilePath> { MakeAbsolute(File("./src/Cake.EnvXmlTr
 
 SolutionProject project = null;
 
-var semVersion = GitVersion().SemVer;
+var semVersion = "0.5.0";
 
 Setup(ctx => {
     CreateDirectory(artifacts);
@@ -83,9 +83,9 @@ Task("Package")
             NoPackageAnalysis = false,
             Version = semVersion,
             OutputDirectory = Directory(artifacts + "/packages"),
-            IconUrl = new Uri("https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png"),
+            IconUrl = new Uri("https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png"),
             Properties = new Dictionary<string, string>() { { "Configuration", configuration } },
-            ReleaseNotes = new List<string>() { "Updates using new Cake Contrib icon. Targeting netstandard2.0 and references Cake 0.28.x."
+            ReleaseNotes = new List<string>() { "Updates using new Cake Contrib icon. References Cake.Core & Cake.Common 0.33.0"
         });
 });
 
