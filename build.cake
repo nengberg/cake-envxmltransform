@@ -12,7 +12,7 @@ var testAssemblies = new List<FilePath> { MakeAbsolute(File("./src/Cake.EnvXmlTr
 
 SolutionProject project = null;
 
-var semVersion = "0.5.0";
+var semVersion = GitVersion().SemVer;
 
 Setup(ctx => {
     CreateDirectory(artifacts);
