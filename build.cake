@@ -85,7 +85,7 @@ Task("Package")
             OutputDirectory = Directory(artifacts + "/packages"),
             IconUrl = new Uri("https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png"),
             Properties = new Dictionary<string, string>() { { "Configuration", configuration } },
-            ReleaseNotes = new List<string>() { "Updates using new Cake Contrib icon. References Cake.Core & Cake.Common 0.33.0" }
+            ReleaseNotes = new List<string>() { "Updates using new Cake Contrib icon.", "References Cake.Core & Cake.Common 0.33.0" }
         });
 });
 
